@@ -15,6 +15,14 @@ const questions = [
         text: '22',
         correct: false,
       },
+      {
+        text: '5',
+        correct: false,
+      },
+      {
+        text: 'impossible math',
+        correct: true,
+      },
     ],
   },
   {
@@ -31,6 +39,73 @@ const questions = [
       {
         text: 'German',
         correct: false,
+      },
+      {
+        text: 'idubbbz',
+        correct: true,
+      },
+    ],
+  },
+  {
+    question: 'Darkest thing in the world',
+    answers: [
+      {
+        text: 'Black hole',
+        correct: false,
+      },
+      {
+        text: 'Your future',
+        correct: true,
+      },
+      {
+        text: 'South Central',
+        correct: true,
+      },
+      {
+        text: 'Black Square',
+        correct: false,
+      },
+    ],
+  },
+  {
+    question: 'Какова твоя профессия?',
+    answers: [
+      {
+        text: 'Не повар',
+        correct: false,
+      },
+      {
+        text: 'Повар',
+        correct: true,
+      },
+      {
+        text: 'Не повар',
+        correct: false,
+      },
+      {
+        text: 'Не повар',
+        correct: false,
+      },
+    ],
+  },
+  {
+    question: 'Как тут жить?',
+    answers: [
+      {
+        text: 'Плохо',
+        correct: true,
+      },
+      {
+        text: 'Не знаю',
+        correct: true,
+      },
+      {
+        text: 'Вызовите санитаров',
+        correct: true,
+      },
+      {
+        text: 'Не повар',
+        correct: true,
       },
     ],
   },
@@ -54,7 +129,11 @@ function startGame() {
 
 function showQuestion(question) {
   questionElement.innerText = question.question;
-  question.answers.forEach((answer) => {
+  const shuffledAnswers = question.answers
+    .map((a) => [Math.random(), a])
+    .sort((a, b) => a[0] - b[0])
+    .map((a) => a[1]);
+  shuffledAnswers.forEach((answer) => {
     const button = document.createElement('button');
     button.innerText = answer.text;
     button.classList.add('button');
